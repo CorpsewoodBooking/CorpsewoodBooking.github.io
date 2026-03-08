@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Corpsewood Reserve</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#2e4d2e;
+}
+
+/* Background slideshow */
+
+.background{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    z-index:-1;
+    opacity:0;
+    animation:fade 15s infinite;
+}
+
+.bg1{
+background-image:url("https://images.unsplash.com/photo-1501785888041-af3ef285b470");
+animation-delay:0s;
+}
+
+.bg2{
+background-image:url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e");
+animation-delay:5s;
+}
+
+.bg3{
+background-image:url("https://images.unsplash.com/photo-1476231682828-37e571bc172f");
+animation-delay:10s;
+}
+
+@keyframes fade{
+0%{opacity:0;}
+10%{opacity:1;}
+30%{opacity:1;}
+40%{opacity:0;}
+100%{opacity:0;}
+}
+
+/* Main box */
+
+.container{
+    position:relative;
+    max-width:500px;
+    margin:80px auto;
+    background:rgba(255,255,255,0.9);
+    padding:25px;
+    border:3px solid #6b4f2c;
+    box-shadow:0 0 10px black;
+}
+
+/* Logo */
+
+.logo{
+    text-align:center;
+    font-size:40px;
+    letter-spacing:5px;
+    color:#2f5e2f;
+    text-shadow:2px 2px #4b3a1f;
+    font-family:Georgia,"Times New Roman",serif;
+}
+
+.subtitle{
+    text-align:center;
+    color:#6b4f2c;
+    margin-bottom:20px;
+}
+
+/* Form */
+
+label{
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:6px;
+margin-top:3px;
+margin-bottom:12px;
+border:1px solid #777;
+background:#f5f5f5;
+}
+
+/* Button */
+
+button{
+width:100%;
+padding:10px;
+background:#3f6b3f;
+color:white;
+border:2px solid #2a4d2a;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#2f5e2f;
+}
+
+/* Error */
+
+#error{
+display:none;
+margin-top:15px;
+padding:10px;
+background:#f3e4e4;
+border:1px solid #a33;
+color:#6b0000;
+font-size:14px;
+}
+
+/* Rules */
+
+.rules{
+margin-top:25px;
+font-size:14px;
+}
+
+.rules h3{
+color:#6b4f2c;
+}
+
+</style>
+
+<script>
+
+function showError(event){
+event.preventDefault();
+document.getElementById("error").style.display="block";
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div class="background bg1"></div>
+<div class="background bg2"></div>
+<div class="background bg3"></div>
+
+<div class="container">
+
+<div class="logo">Corpsewood</div>
+<div class="subtitle">Reserve</div>
+
+<p style="text-align:center;"><b>A park/forest for camping.</b></p>
+
+<form onsubmit="showError(event)">
+
+<label>Date:</label>
+<input type="date">
+
+<label>Number of Guests:</label>
+<input type="number" value="1">
+
+<label>Full Name:</label>
+<input type="text" placeholder="Your Name">
+
+<label>Email:</label>
+<input type="email" placeholder="you@example.com">
+
+<label>Phone Number:</label>
+<input type="text" placeholder="123-456-7890">
+
+<button type="submit">Submit Booking</button>
+
+</form>
+
+<div id="error">
+Corpsewood booking is not available due to legal reasons, Corpsewood will not be coming back for booking.
+<br><br>
+More information:<br>
+<a href="https://corpsewood.github.io/Info/" target="_blank">
+https://corpsewood.github.io/Info/
+</a>
+</div>
+
+<div class="rules">
+
+<h3>Rules & Warnings</h3>
+
+<ul>
+<li>Wandering off marked paths may result in permanent disappearance.</li>
+<li>Cameras and phones may mysteriously fail.</li>
+</ul>
+
+</div>
+
+</div>
+
+</body>
+</html>
