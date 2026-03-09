@@ -5,7 +5,6 @@
 <title>Corpsewood Reserve</title>
 
 <style>
-
 body{
     margin:0;
     font-family: Arial, Helvetica, sans-serif;
@@ -13,7 +12,6 @@ body{
 }
 
 /* Background slideshow */
-
 .background{
     position:fixed;
     top:0;
@@ -52,7 +50,6 @@ animation-delay:10s;
 }
 
 /* Main content box */
-
 .container{
     position:relative;
     max-width:500px;
@@ -64,7 +61,6 @@ animation-delay:10s;
 }
 
 /* Logo */
-
 .logo{
     text-align:center;
     font-size:40px;
@@ -81,7 +77,6 @@ animation-delay:10s;
 }
 
 /* Form */
-
 label{
 font-weight:bold;
 }
@@ -96,7 +91,6 @@ background:#f5f5f5;
 }
 
 /* Button */
-
 button{
 width:100%;
 padding:10px;
@@ -112,7 +106,6 @@ background:#2f5e2f;
 }
 
 /* Error message */
-
 #error{
 display:none;
 margin-top:15px;
@@ -123,8 +116,16 @@ color:#6b0000;
 font-size:14px;
 }
 
-/* Rules */
+#error a{
+color:#2f5e2f;
+text-decoration:none;
+}
 
+#error a:hover{
+text-decoration:underline;
+}
+
+/* Rules */
 .rules{
 margin-top:25px;
 font-size:14px;
@@ -135,7 +136,6 @@ color:#6b4f2c;
 }
 
 /* Footer fix */
-
 footer{
 text-align:center;
 font-size:12px;
@@ -144,7 +144,6 @@ color:#fff;
 background:rgba(0,0,0,0.6);
 padding:10px;
 }
-
 </style>
 
 <script>
@@ -158,10 +157,12 @@ document.getElementById("error").style.display="block";
 
 <body>
 
+<!-- Background Slideshow -->
 <div class="background bg1"></div>
 <div class="background bg2"></div>
 <div class="background bg3"></div>
 
+<!-- Main Content -->
 <div class="container">
 
 <div class="logo">Corpsewood</div>
@@ -196,6 +197,10 @@ Corpsewood booking is not available due to legal reasons, Corpsewood will not be
 More information:<br>
 <a href="https://corpsewood.github.io/Info/" target="_blank">
 https://corpsewood.github.io/Info/
+</a>
+<br>
+<a href="https://corpsewoodbooking.github.io/Creatures/" target="_blank">
+https://corpsewoodbooking.github.io/Creatures/
 </a>
 </div>
 
