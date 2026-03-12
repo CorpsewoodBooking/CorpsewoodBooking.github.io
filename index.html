@@ -51,8 +51,13 @@ body{
 .bg1{ background-image:url("https://images.unsplash.com/photo-1501785888041-af3ef285b470"); animation-delay:0s; }
 .bg2{ background-image:url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e"); animation-delay:5s; }
 .bg3{ background-image:url("https://images.unsplash.com/photo-1476231682828-37e571bc172f"); animation-delay:10s; }
+
 @keyframes fade{
-    0%{opacity:0;} 10%{opacity:1;} 30%{opacity:1;} 40%{opacity:0;} 100%{opacity:0;}
+    0%{opacity:0;}
+    10%{opacity:1;}
+    30%{opacity:1;}
+    40%{opacity:0;}
+    100%{opacity:0;}
 }
 
 /* Leaves */
@@ -70,6 +75,7 @@ body{
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
+
 @keyframes fall{
     0%{ transform: translateY(0px) rotate(0deg);}
     100%{ transform: translateY(110vh) rotate(360deg);}
@@ -105,6 +111,7 @@ body{
 
 /* Form */
 label{ font-weight:bold; }
+
 input{
     width:100%;
     padding:6px;
@@ -123,7 +130,10 @@ button{
     font-weight:bold;
     cursor:pointer;
 }
-button:hover{ background:#2f5e2f; }
+
+button:hover{
+    background:#2f5e2f;
+}
 
 /* Error message */
 #error{
@@ -141,26 +151,40 @@ button:hover{ background:#2f5e2f; }
     margin-top:25px;
     font-size:14px;
 }
-.rules h3{ color:#6b4f2c; }
 
-/* Corner image (small & subtle) */
+.rules h3{
+    color:#6b4f2c;
+}
+
+/* Disclaimer */
+.disclaimer{
+    margin-top:20px;
+    font-size:12px;
+    color:#444;
+    border-top:1px solid #999;
+    padding-top:10px;
+    text-align:center;
+}
+
+/* Corner image */
 #corner-img{
     position: fixed;
     top: 25px;
     right: 25px;
-    width: 50px;           /* smaller */
+    width: 50px;
     height: 50px;
     object-fit: contain;
-    opacity: 0.5;          /* more hidden */
+    opacity: 0.5;
     cursor: pointer;
     z-index:5;
     transition: all 0.8s ease, opacity 0.3s ease;
 }
+
 #corner-img:hover{
-    opacity:0.8;  /* slightly brighter on hover */
+    opacity:0.8;
 }
 
-/* Centered image after click */
+/* Centered image */
 #corner-img.centered{
     top:50%;
     left:50%;
@@ -170,7 +194,7 @@ button:hover{ background:#2f5e2f; }
     opacity:1;
 }
 
-/* Quiz overlay container */
+/* Quiz container */
 #quiz-container{
     display:none;
     position: fixed;
@@ -182,7 +206,7 @@ button:hover{ background:#2f5e2f; }
     z-index:6;
 }
 
-/* Text on top-left of image */
+/* Quiz text */
 #quiz-text{
     font-size:24px;
     color:black;
@@ -191,7 +215,7 @@ button:hover{ background:#2f5e2f; }
     left:20px;
 }
 
-/* Input below image */
+/* Quiz input */
 #quiz-input{
     position:absolute;
     top:380px;
@@ -202,7 +226,7 @@ button:hover{ background:#2f5e2f; }
     width:200px;
 }
 
-/* Submit button under input */
+/* Submit button */
 #quiz-submit{
     position:absolute;
     top:420px;
@@ -211,6 +235,7 @@ button:hover{ background:#2f5e2f; }
 }
 </style>
 </head>
+
 <body>
 
 <div id="black-layer"></div>
@@ -221,53 +246,84 @@ button:hover{ background:#2f5e2f; }
 <div class="background bg3"></div>
 
 <div class="container">
-    <div class="logo">Corpsewood</div>
-    <div class="subtitle">Reserve</div>
-    <p style="text-align:center;"><b>A park/forest for camping.</b></p>
-    <form onsubmit="event.preventDefault(); document.getElementById('error').style.display='block';">
-        <label>Date:</label><input type="date">
-        <label>Number of Guests:</label><input type="number" value="1">
-        <label>Full Name:</label><input type="text" placeholder="Your Name">
-        <label>Email:</label><input type="email" placeholder="you@example.com">
-        <label>Phone Number:</label><input type="text" placeholder="123-456-7890">
-        <button type="submit">Submit Booking</button>
-    </form>
-    <div id="error">
-        Corpsewood booking is not available due to legal reasons, Corpsewood will not be coming back for booking.
-        <br><br>
-        More information:<br>
-        <a href="https://corpsewood.github.io/Info/" target="_blank">https://corpsewood.github.io/Info/</a>
-    </div>
-    <div class="rules">
-        <h3>Rules & Warnings</h3>
-        <ul>
-            <li>Wandering off marked paths may result in permanent disappearance.</li>
-            <li>Cameras and phones may mysteriously fail.</li>
-        </ul>
-    </div>
+
+<div class="logo">Corpsewood</div>
+<div class="subtitle">Reserve</div>
+
+<p style="text-align:center;"><b>A park/forest for camping.</b></p>
+
+<form onsubmit="event.preventDefault(); document.getElementById('error').style.display='block';">
+
+<label>Date:</label>
+<input type="date">
+
+<label>Number of Guests:</label>
+<input type="number" value="1">
+
+<label>Full Name:</label>
+<input type="text" placeholder="Your Name">
+
+<label>Email:</label>
+<input type="email" placeholder="you@example.com">
+
+<label>Phone Number:</label>
+<input type="text" placeholder="123-456-7890">
+
+<button type="submit">Submit Booking</button>
+
+</form>
+
+<div id="error">
+Corpsewood booking is not available due to legal reasons, Corpsewood will not be coming back for booking.
+<br><br>
+More information:<br>
+<a href="https://corpsewood.github.io/Info/" target="_blank">https://corpsewood.github.io/Info/</a>
+</div>
+
+<div class="rules">
+<h3>Rules & Warnings</h3>
+<ul>
+<li>Wandering off marked paths may result in permanent disappearance.</li>
+<li>Cameras and phones may mysteriously fail.</li>
+</ul>
+</div>
+
+<div class="disclaimer">
+This isn't a real park or a booking service.
+</div>
+
 </div>
 
 <script>
 window.addEventListener('DOMContentLoaded', ()=>{
     const leafCount = 15;
+
     for(let i=0;i<leafCount;i++){
+
         const leaf = document.createElement('div');
         leaf.classList.add('leaf');
+
         leaf.style.left = Math.random()*100 + 'vw';
         leaf.style.animationDuration = (5 + Math.random()*10)+'s';
         leaf.style.animationDelay = (Math.random()*10)+'s';
         leaf.style.transform = 'rotate('+Math.random()*360+'deg)';
+
         document.body.appendChild(leaf);
+
     }
 });
 </script>
 
-<img src="https://file.garden/Z9xGnXpf6B5_2o1b/2%20(5).png" id="corner-img" alt="Mystery Image">
+<img src="https://file.garden/Z9xGnXpf6B5_2o1b/2%20(5).png" id="corner-img">
 
 <div id="quiz-container">
-    <div id="quiz-text">Who is this?</div>
-    <input type="text" id="quiz-input" placeholder="Type your guess">
-    <button id="quiz-submit">Submit</button>
+
+<div id="quiz-text">Who is this?</div>
+
+<input type="text" id="quiz-input" placeholder="Type your guess">
+
+<button id="quiz-submit">Submit</button>
+
 </div>
 
 <script>
@@ -277,45 +333,57 @@ const quizInput = document.getElementById('quiz-input');
 const quizSubmit = document.getElementById('quiz-submit');
 
 cornerImg.addEventListener('click', ()=>{
-    // hide everything else visually without affecting scroll
-    document.querySelectorAll('body > :not(#corner-img):not(#quiz-container):not(#black-layer):not(#red-overlay)').forEach(el=>{
-        el.style.opacity='0';
-        el.style.pointerEvents='none';
-    });
 
-    // show dark red overlay
-    document.getElementById('red-overlay').style.display='block';
-
-    // center image
-    cornerImg.classList.add('centered');
-
-    // show text and input
-    quizContainer.style.display='block';
-    quizInput.focus(); // auto-focus
+document.querySelectorAll('body > :not(#corner-img):not(#quiz-container):not(#black-layer):not(#red-overlay)').forEach(el=>{
+el.style.opacity='0';
+el.style.pointerEvents='none';
 });
 
-// Function to check answer
+document.getElementById('red-overlay').style.display='block';
+
+cornerImg.classList.add('centered');
+
+quizContainer.style.display='block';
+
+quizInput.focus();
+
+});
+
 function checkAnswer(){
-    const answer = quizInput.value.trim().toLowerCase();
-    if(answer === 'daed'){
-        window.location.href = 'https://corpsewoodbooking.github.io/Daed/';
-    } else {
-        alert('Wrong! Try again.');
-        quizInput.value = '';
-        quizInput.focus();
-    }
+
+const answer = quizInput.value.trim().toLowerCase();
+
+if(answer === 'daed'){
+
+window.location.href = 'https://corpsewoodbooking.github.io/Daed/';
+
+}else{
+
+alert('Wrong! Try again.');
+
+quizInput.value = '';
+
+quizInput.focus();
+
 }
 
-// Handle Enter key
+}
+
 quizInput.addEventListener('keydown', function(e){
-    if(e.key === 'Enter'){
-        e.preventDefault();
-        checkAnswer();
-    }
+
+if(e.key === 'Enter'){
+
+e.preventDefault();
+
+checkAnswer();
+
+}
+
 });
 
-// Handle button click
 quizSubmit.addEventListener('click', checkAnswer);
+
 </script>
+
 </body>
 </html>
