@@ -1,8 +1,10 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Corpsewood Reserve</title>
+
 <style>
 body{
     margin:0;
@@ -48,6 +50,7 @@ body{
     opacity:0;
     animation:fade 15s infinite;
 }
+
 .bg1{ background-image:url("https://images.unsplash.com/photo-1501785888041-af3ef285b470"); animation-delay:0s; }
 .bg2{ background-image:url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e"); animation-delay:5s; }
 .bg3{ background-image:url("https://images.unsplash.com/photo-1476231682828-37e571bc172f"); animation-delay:10s; }
@@ -58,27 +61,6 @@ body{
     30%{opacity:1;}
     40%{opacity:0;}
     100%{opacity:0;}
-}
-
-/* Leaves */
-.leaf{
-    position: fixed;
-    top: -50px;
-    width: 40px;
-    height: 40px;
-    background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Maple_leaf_red.svg/512px-Maple_leaf_red.svg.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    z-index:0;
-    opacity: 0.8;
-    animation-name: fall;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-}
-
-@keyframes fall{
-    0%{ transform: translateY(0px) rotate(0deg);}
-    100%{ transform: translateY(110vh) rotate(360deg);}
 }
 
 /* Main container */
@@ -184,7 +166,7 @@ button:hover{
     opacity:0.8;
 }
 
-/* Centered image */
+/* Centered image after click */
 #corner-img.centered{
     top:50%;
     left:50%;
@@ -194,7 +176,7 @@ button:hover{
     opacity:1;
 }
 
-/* Quiz container */
+/* Quiz overlay container */
 #quiz-container{
     display:none;
     position: fixed;
@@ -206,7 +188,7 @@ button:hover{
     z-index:6;
 }
 
-/* Quiz text */
+/* Text on top-left of image */
 #quiz-text{
     font-size:24px;
     color:black;
@@ -215,7 +197,7 @@ button:hover{
     left:20px;
 }
 
-/* Quiz input */
+/* Input below image */
 #quiz-input{
     position:absolute;
     top:380px;
@@ -226,7 +208,7 @@ button:hover{
     width:200px;
 }
 
-/* Submit button */
+/* Submit button under input */
 #quiz-submit{
     position:absolute;
     top:420px;
@@ -294,36 +276,12 @@ This isn't a real park or a booking service.
 
 </div>
 
-<script>
-window.addEventListener('DOMContentLoaded', ()=>{
-    const leafCount = 15;
-
-    for(let i=0;i<leafCount;i++){
-
-        const leaf = document.createElement('div');
-        leaf.classList.add('leaf');
-
-        leaf.style.left = Math.random()*100 + 'vw';
-        leaf.style.animationDuration = (5 + Math.random()*10)+'s';
-        leaf.style.animationDelay = (Math.random()*10)+'s';
-        leaf.style.transform = 'rotate('+Math.random()*360+'deg)';
-
-        document.body.appendChild(leaf);
-
-    }
-});
-</script>
-
-<img src="https://file.garden/Z9xGnXpf6B5_2o1b/2%20(5).png" id="corner-img">
+<img src="https://file.garden/Z9xGnXpf6B5_2o1b/2%20(5).png" id="corner-img" alt="Mystery Image">
 
 <div id="quiz-container">
-
 <div id="quiz-text">Who is this?</div>
-
 <input type="text" id="quiz-input" placeholder="Type your guess">
-
 <button id="quiz-submit">Submit</button>
-
 </div>
 
 <script>
@@ -333,57 +291,39 @@ const quizInput = document.getElementById('quiz-input');
 const quizSubmit = document.getElementById('quiz-submit');
 
 cornerImg.addEventListener('click', ()=>{
+    document.querySelectorAll('body > :not(#corner-img):not(#quiz-container):not(#black-layer):not(#red-overlay)').forEach(el=>{
+        el.style.opacity='0';
+        el.style.pointerEvents='none';
+    });
 
-document.querySelectorAll('body > :not(#corner-img):not(#quiz-container):not(#black-layer):not(#red-overlay)').forEach(el=>{
-el.style.opacity='0';
-el.style.pointerEvents='none';
-});
-
-document.getElementById('red-overlay').style.display='block';
-
-cornerImg.classList.add('centered');
-
-quizContainer.style.display='block';
-
-quizInput.focus();
-
+    document.getElementById('red-overlay').style.display='block';
+    cornerImg.classList.add('centered');
+    quizContainer.style.display='block';
+    quizInput.focus();
 });
 
 function checkAnswer(){
+    const answer = quizInput.value.trim().toLowerCase();
 
-const answer = quizInput.value.trim().toLowerCase();
-
-if(answer === 'daed'){
-
-window.location.href = 'https://corpsewoodbooking.github.io/Daed/';
-
-}else{
-
-alert('Wrong! Try again.');
-
-quizInput.value = '';
-
-quizInput.focus();
-
-}
-
+    if(answer === 'daed'){
+        window.location.href = 'https://corpsewoodbooking.github.io/Daed/';
+    } else {
+        alert('Wrong! Try again.');
+        quizInput.value = '';
+        quizInput.focus();
+    }
 }
 
 quizInput.addEventListener('keydown', function(e){
-
-if(e.key === 'Enter'){
-
-e.preventDefault();
-
-checkAnswer();
-
-}
-
+    if(e.key === 'Enter'){
+        e.preventDefault();
+        checkAnswer();
+    }
 });
 
 quizSubmit.addEventListener('click', checkAnswer);
-
 </script>
 
 </body>
 </html>
+```
