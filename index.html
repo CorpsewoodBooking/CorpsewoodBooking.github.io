@@ -1,329 +1,272 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Corpsewood Reserve</title>
+<title>Corpsewood Reservation System</title>
 
 <style>
-body{
-    margin:0;
-    font-family: Arial, Helvetica, sans-serif;
-    overflow-y: auto;
-    position: relative;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: url("https://images.unsplash.com/photo-1501785888041-af3ef285b470") no-repeat center center fixed;
+    background-size: cover;
+    overflow: hidden;
 }
 
-/* Black bottom layer */
-#black-layer{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
-    background-color:black;
-    z-index:-3;
+/* MAIN UI */
+.overlay {
+    background: rgba(0, 0, 0, 0.55);
+    min-height: 100vh;
+    padding: 40px;
 }
 
-/* Dark red overlay */
-#red-overlay{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
-    background-color:rgba(139,0,0,0.95);
-    z-index:4;
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 6px;
 }
 
-/* Background slideshow */
-.background{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100vw;
-    height:100vh;
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    z-index:-2;
-    opacity:0;
-    animation:fade 15s infinite;
+h1 { margin-top: 0; font-size: 22px; }
+
+label { display: block; margin-top: 12px; }
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #bbb;
+    border-radius: 3px;
 }
 
-.bg1{ background-image:url("https://images.unsplash.com/photo-1501785888041-af3ef285b470"); animation-delay:0s; }
-.bg2{ background-image:url("https://images.unsplash.com/photo-1441974231531-c6227db76b6e"); animation-delay:5s; }
-.bg3{ background-image:url("https://images.unsplash.com/photo-1476231682828-37e571bc172f"); animation-delay:10s; }
-
-@keyframes fade{
-    0%{opacity:0;}
-    10%{opacity:1;}
-    30%{opacity:1;}
-    40%{opacity:0;}
-    100%{opacity:0;}
-}
-
-/* Main container */
-.container{
-    position:relative;
-    max-width:500px;
-    margin:80px auto;
-    background:rgba(255,255,255,0.9);
-    padding:25px;
-    border:3px solid #6b4f2c;
-    box-shadow:0 0 10px black;
-    z-index:2;
-}
-
-/* Logo */
-.logo{
-    text-align:center;
-    font-size:40px;
-    letter-spacing:5px;
-    color:#2f5e2f;
-    text-shadow:2px 2px #4b3a1f;
-    font-family:Georgia,"Times New Roman",serif;
-}
-
-.subtitle{
-    text-align:center;
-    color:#6b4f2c;
-    margin-bottom:20px;
-}
-
-/* Form */
-label{ font-weight:bold; }
-
-input{
-    width:100%;
-    padding:6px;
-    margin-top:3px;
-    margin-bottom:12px;
-    border:1px solid #777;
-    background:#f5f5f5;
-}
-
-/* Button */
-button{
-    padding:8px 12px;
-    background:#3f6b3f;
-    color:white;
-    border:2px solid #2a4d2a;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#2f5e2f;
-}
-
-/* Error message */
-#error{
-    display:none;
-    margin-top:15px;
-    padding:10px;
-    background:#f3e4e4;
-    border:1px solid #a33;
-    color:#6b0000;
-    font-size:14px;
-}
-
-/* Rules */
-.rules{
-    margin-top:25px;
-    font-size:14px;
-}
-
-.rules h3{
-    color:#6b4f2c;
-}
-
-/* Disclaimer */
-.disclaimer{
-    margin-top:20px;
-    font-size:12px;
-    color:#444;
-    border-top:1px solid #999;
-    padding-top:10px;
-    text-align:center;
-}
-
-/* Corner image */
-#corner-img{
-    position: fixed;
-    top: 25px;
-    right: 25px;
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    opacity: 0.5;
+button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    border: none;
+    background: #1d3557;
+    color: white;
     cursor: pointer;
-    z-index:5;
-    transition: all 0.8s ease, opacity 0.3s ease;
+    border-radius: 3px;
 }
 
-#corner-img:hover{
-    opacity:0.8;
+.footer {
+    font-size: 12px;
+    color: #666;
+    margin-top: 20px;
 }
 
-/* Centered image after click */
-#corner-img.centered{
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    width:400px;
-    height:400px;
-    opacity:1;
-}
-
-/* Quiz overlay container */
-#quiz-container{
-    display:none;
+/* LORE */
+.lore {
     position: fixed;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    width:400px;
-    height:500px;
-    z-index:6;
+    bottom: 15px;
+    left: 20px;
+    right: 20px;
+
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.18);
+    font-style: italic;
+    line-height: 1.6;
+
+    cursor: pointer;
 }
 
-/* Text on top-left of image */
-#quiz-text{
-    font-size:24px;
-    color:black;
-    position:absolute;
-    top:20px;
-    left:20px;
+/* PANIC */
+body.panic .overlay {
+    animation: collapse 2s forwards;
 }
 
-/* Input below image */
-#quiz-input{
-    position:absolute;
-    top:380px;
-    left:50%;
-    transform: translateX(-50%);
-    padding:5px;
-    font-size:16px;
-    width:200px;
+@keyframes collapse {
+    0% { opacity: 1; filter: blur(0); }
+    40% { filter: blur(2px) contrast(1.5); }
+    80% { opacity: 0.2; filter: blur(6px) contrast(2); }
+    100% { opacity: 0; visibility: hidden; }
 }
 
-/* Submit button under input */
-#quiz-submit{
-    position:absolute;
-    top:420px;
-    left:50%;
-    transform: translateX(-50%);
+/* GLITCH LAYERS */
+.glitch-layer {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 25vh;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+.glitch-1 { top: 10%; }
+.glitch-2 { top: 40%; }
+.glitch-3 { top: 70%; }
+
+body.panic .glitch-layer {
+    opacity: 0.7;
+    animation: tear 0.2s infinite alternate;
+    mix-blend-mode: difference;
+}
+
+@keyframes tear {
+    0% { transform: translateX(-8px); }
+    50% { transform: translateX(8px); }
+    100% { transform: translateX(-4px); }
+}
+
+/* BROKEN STATE */
+body.broken {
+    background: black;
+}
+
+body.broken .overlay {
+    display: none;
+}
+
+body.broken::before {
+    content: "SYSTEM CORRUPTION DETECTED";
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 18px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+
+/* RESTORE BUTTON */
+#restoreBtn {
+    position: fixed;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+}
+
+#restoreBtn button {
+    padding: 12px 18px;
+    background: #1d3557;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.lore.panic {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(2);
+
+    font-size: 20px;
+    color: black;
+
+    background: rgba(255,255,255,0.95);
+    padding: 25px;
+    border-radius: 10px;
+
+    text-align: center;
+    z-index: 9999;
 }
 </style>
 </head>
 
 <body>
 
-<div id="black-layer"></div>
-<div id="red-overlay"></div>
-
-<div class="background bg1"></div>
-<div class="background bg2"></div>
-<div class="background bg3"></div>
-
+<div class="overlay">
 <div class="container">
 
-<div class="logo">Corpsewood</div>
-<div class="subtitle">Reserve</div>
+<h1>Corpsewood Reservation System</h1>
 
-<p style="text-align:center;"><b>A park/forest for camping.</b></p>
+<label>Name</label>
+<input type="text">
 
-<form onsubmit="event.preventDefault(); document.getElementById('error').style.display='block';">
-
-<label>Date:</label>
+<label>Date of Visit</label>
 <input type="date">
 
-<label>Number of Guests:</label>
-<input type="number" value="1">
+<label>Group Size</label>
+<input type="number">
 
-<label>Full Name:</label>
-<input type="text" placeholder="Your Name">
+<button onclick="window.location.href='https://corpsewood.github.io/entrance/'">
+    Submit Reservation
+</button>
 
-<label>Email:</label>
-<input type="email" placeholder="you@example.com">
-
-<label>Phone Number:</label>
-<input type="text" placeholder="123-456-7890">
-
-<button type="submit">Submit Booking</button>
-
-</form>
-
-<div id="error">
-Corpsewood booking is not available due to legal reasons, Corpsewood will not be coming back for booking.
-<br><br>
-More information:<br>
-<a href="https://corpsewood.github.io/Info/" target="_blank">https://corpsewood.github.io/Info/</a>
-</div>
-
-<div class="rules">
-<h3>Rules & Warnings</h3>
-<ul>
-<li>Wandering off marked paths may result in permanent disappearance.</li>
-<li>Cameras and phones may mysteriously fail.</li>
-</ul>
-</div>
-
-<div class="disclaimer">
-This isn't a real park or a booking service.
+<div class="footer">
+All reservations are recorded for forestry compliance tracking.
 </div>
 
 </div>
-
-<img src="https://file.garden/Z9xGnXpf6B5_2o1b/2%20(7).png" id="corner-img" alt="Mystery Image">
-
-<div id="quiz-container">
-<div id="quiz-text">Who is this?</div>
-<input type="text" id="quiz-input" placeholder="Type your guess">
-<button id="quiz-submit">Submit</button>
 </div>
+
+<!-- LORE -->
+<div class="lore">
+    The old wind still moves through these trees.  
+    It remembers what we have forgotten.  
+
+    Daed was last seen near the perimeter routes.  
+    Old Wind does not register him as missing.  
+</div>
+
+<!-- GLITCH LAYERS -->
+<div class="glitch-layer glitch-1"></div>
+<div class="glitch-layer glitch-2"></div>
+<div class="glitch-layer glitch-3"></div>
 
 <script>
-const cornerImg = document.getElementById('corner-img');
-const quizContainer = document.getElementById('quiz-container');
-const quizInput = document.getElementById('quiz-input');
-const quizSubmit = document.getElementById('quiz-submit');
+function playGlitchSound() {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
 
-cornerImg.addEventListener('click', ()=>{
-    document.querySelectorAll('body > :not(#corner-img):not(#quiz-container):not(#black-layer):not(#red-overlay)').forEach(el=>{
-        el.style.opacity='0';
-        el.style.pointerEvents='none';
-    });
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
 
-    document.getElementById('red-overlay').style.display='block';
-    cornerImg.classList.add('centered');
-    quizContainer.style.display='block';
-    quizInput.focus();
-});
+    osc.type = "square";
+    osc.frequency.setValueAtTime(80, ctx.currentTime);
 
-function checkAnswer(){
-    const answer = quizInput.value.trim().toLowerCase();
+    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
 
-    if(answer === 'daed'){
-        window.location.href = 'https://corpsewoodbooking.github.io/Daed/';
-    } else {
-        alert('Wrong! Try again.');
-        quizInput.value = '';
-        quizInput.focus();
-    }
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start();
+    osc.stop(ctx.currentTime + 0.3);
 }
 
-quizInput.addEventListener('keydown', function(e){
-    if(e.key === 'Enter'){
-        e.preventDefault();
-        checkAnswer();
-    }
-});
+function showRestoreButton() {
+    if (document.getElementById("restoreBtn")) return;
 
-quizSubmit.addEventListener('click', checkAnswer);
+    const btn = document.createElement("div");
+    btn.id = "restoreBtn";
+    btn.innerHTML = `<button>Restore System</button>`;
+    document.body.appendChild(btn);
+
+    btn.querySelector("button").addEventListener("click", () => {
+        localStorage.removeItem("corpsewood_corrupt");
+        location.reload();
+    });
+}
+
+/* restore state on load */
+if (localStorage.getItem("corpsewood_corrupt") === "true") {
+    document.body.classList.add("broken");
+    showRestoreButton();
+}
+
+/* trigger corruption */
+document.querySelector(".lore").addEventListener("click", function () {
+    playGlitchSound();
+
+    this.classList.add("panic");
+
+    setTimeout(() => {
+        document.body.classList.add("panic");
+        localStorage.setItem("corpsewood_corrupt", "true");
+
+        setTimeout(() => {
+            document.body.classList.add("broken");
+            showRestoreButton();
+        }, 2000);
+
+    }, 120);
+});
 </script>
 
 </body>
 </html>
-```
